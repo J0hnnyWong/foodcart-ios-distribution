@@ -4,7 +4,7 @@ set -eu
 IPA=${1:?Usage: generate-ios-ota-site.sh path/to/Foodcart.ipa https://owner.github.io/repo/}
 BASE_URL=${2:?Usage: generate-ios-ota-site.sh path/to/Foodcart.ipa https://owner.github.io/repo/}
 OUT=${3:-site}
-BUNDLE_ID=${BUNDLE_ID:-com.foodcart.localdemo}
+BUNDLE_ID=${BUNDLE_ID:-com.johnny.game.foodcart}
 DISPLAY_NAME=${DISPLAY_NAME:-一口小精灵}
 VERSION=${VERSION:-0.1.0}
 BUILD_NUMBER=${BUILD_NUMBER:-release}
