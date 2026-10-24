@@ -30,9 +30,8 @@ jobs:
       - name: Generate HTTPS install page
         env:
           PAGES_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
-          BUILD_NUMBER: "0"
         run: |
-          BUNDLE_ID=com.johnny.game.foodcart VERSION=1.0 BUILD_NUMBER="$BUILD_NUMBER" \
+          BUNDLE_ID=com.johnny.game.foodcart \
             ./scripts/generate-ios-ota-site.sh release-assets/Foodcart.ipa "$PAGES_URL" site
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
