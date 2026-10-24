@@ -4,8 +4,6 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-  release:
-    types: [published]
 
 permissions:
   contents: read
@@ -24,10 +22,10 @@ jobs:
       - name: Download release IPA
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
         run: |
           mkdir -p release-assets
-          gh release download ${RELEASE_TAG:+"$RELEASE_TAG"} --repo "$GITHUB_REPOSITORY" --pattern '*.ipa' --dir release-assets
+          RELEASE_TAG="$(gh release view --repo "$GITHUB_REPOSITORY" --json tagName --jq .tagName)"
+          gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --pattern '*.ipa' --dir release-assets
           mv release-assets/*.ipa release-assets/Foodcart.ipa
       - name: Generate HTTPS install page
         env:
